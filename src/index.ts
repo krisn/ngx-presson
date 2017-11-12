@@ -1,35 +1,25 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SampleComponent } from './sample.component';
-import { SampleDirective } from './sample.directive';
-import { SamplePipe } from './sample.pipe';
-import { SampleService } from './sample.service';
+import { PressonDirective } from './presson.directive';
 
-export * from './sample.component';
-export * from './sample.directive';
-export * from './sample.pipe';
-export * from './sample.service';
+export * from './presson.directive';
 
 @NgModule({
   imports: [
     CommonModule
   ],
   declarations: [
-    SampleComponent,
-    SampleDirective,
-    SamplePipe
+    PressonDirective
   ],
   exports: [
-    SampleComponent,
-    SampleDirective,
-    SamplePipe
+    PressonDirective
   ]
 })
-export class SampleModule {
+export class PressonModule {
   static forRoot(): ModuleWithProviders {
     return {
-      ngModule: SampleModule,
-      providers: [SampleService]
+      ngModule: PressonModule,
+      providers: []
     };
   }
 }
