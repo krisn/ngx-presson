@@ -7,54 +7,40 @@ import * as Rx from 'rxjs/Rx';
 export class PressonDirective {
 
   @Input() presson: any; // get the config json from here
+  @Input() pressonSpeed: number;
+  @Input() pressonWait: number;
   @Output() pressonChange: EventEmitter<any> = new EventEmitter<any>();
 
   private last: MouseEvent;
   private mouseDown = false;
 
   constructor(private el: ElementRef) {
+    this.pressonSpeed = this.pressonSpeed || 100;
+    this.pressonWait = this.pressonWait || 0;
   }
 
   @HostListener('mousedown', ['$event']) onMousedown(event) {
     this.mouseDown = true;
     this.last = event;
-    console.log('mousedown', this.mouseDown);
     this.inc();
-  }
-
-  inc() {
-    /*while (this.mouseDown) {
-      this.presson++;
-      this.pressonChange.emit(this.presson);
-      console.log(this.presson);
-    }*/
-    const timer = Rx.Observable
-    .timer(0, 200)
-    .takeWhile(val => this.mouseDown)
-    .finally(() => timer.unsubscribe())
-    .subscribe(val => {
-      this.presson++;
-    });
   }
 
   @HostListener('mouseup') onMouseup() {
     this.mouseDown = false;
-    console.log('mouseup', this.mouseDown);
   }
-  /*@HostListener('change') onChange() {
-    const data = this.el.nativeElement.value ? this.el.nativeElement.value : this.el.nativeElement.innerText;
-    const result = this.pressonService.count(data);
-    this.pressonChange.emit(result); // Object.assign(result, this.presson || {}));
-    // console.log('change', result);
-  }*/
 
-  @HostListener('mousemove', ['$event']) onMousemove(event: MouseEvent) {
-    if (this.mouseDown) {
-      /*this.scene.rotate(
-        event.clientX - this.last.clientX,
-        event.clientY - this.last.clientY
-      );*/
-      this.last = event;
-    }
+  inc() {
+    const timer = Rx.Observable
+    .timer(this.pressonWait, this.pressonSpeed)
+    .takeWhile(val => this.mouseDown)
+    .finally(() => {
+      console.log('unsubscribe', this.presson);
+      timer.unsubscribe();
+    })
+    .subscribe(val => {
+      console.log('inc', this.presson);
+      this.presson++;
+      this.pressonChange.emit(this.presson);
+    });
   }
 }
