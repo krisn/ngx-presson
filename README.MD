@@ -1,6 +1,6 @@
 # ngx-presson
 
-Angular 2+ directive that will increment or decrement a counter variable while your element is being pressed. 
+Angular 2+ directive that will increment (or decrement) a counter variable while your element is being pressed. Similar to Medium's [claps](https://blog.medium.com/show-authors-more-%EF%B8%8F-with-s-c1652279ba01).
 
 [Preview in Plunker](https://plnkr.co/R5W1BnfoeBOlEifUwGU7)
 
@@ -23,13 +23,13 @@ $ npm install ngx-presson --save
 Add the directive in any element of your Angular application's template:
 
 ```html
-<!-- You can now use your library component in app.component.html -->
+<!-- You can now use your library directive in app.component.html -->
 <h1>{{title}}</h1>
-<textarea [(presson)]="result"></textarea>
-<p>Words: {{result && result.words}}, Letters: {{result && result.letters}}, Spaces: {{result && result.spaces}}</p>
+<p><button [(presson)]="counter">Presson</button></p>
+<p>Counter: {{counter}}</p>
 ```
 
-In your Angular `AppModule`, import the library then use the `PressonService` to count any text in your application logic:
+In your Angular `AppModule`, import the library:
 
 ```typescript
 import { BrowserModule } from '@angular/platform-browser';
@@ -37,39 +37,35 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 
 // Import the library
-import { PressonModule, PressonService } from 'ngx-presson';
+import { PressonModule } from 'ngx-presson';
 
 @NgModule({
+  bootstrap: [ AppComponent ],
   declarations: [ AppComponent ],
   imports: [
     BrowserModule,
     // Specify the library as an import
     PressonModule
-  ],
-  providers: [ PressonService ],
-  bootstrap: [ AppComponent ]
+  ]
 })
 export class AppModule {}
 
 @Component()
-class AppComponent implements OnInit {
-  result: any;
-  // Inject the service into your component
-  constructor(private pressonService: PressonService) {}
-  ngOnInit() {
-    // Use the service to count any string or text
-    console.log('Presson', this.pressonService.count('Big old fox jumps over a wall'));
-  }
+class AppComponent {
+
+counter = 0;
+
 }
 ```
-
 
 ## Parameters
 
 Parameter | Type | Default | Description 
 --- | --- | --- | ---
-**presson** | *json* | `null` | Results as JSON object
-
+**presson** | *number* | `null` | Counter value
+**pressonSpeed** | *number* | `100` | Counting speed in milliseconds
+**pressonWait** | *number* | `0` | Delay in ms before counting starts after the mouse press
+**pressonChange** | *event* | `null` | Change event to implement if using 'presson' for multiple elements
 
 
 ## License
