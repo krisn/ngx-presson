@@ -2,7 +2,7 @@
 
 Angular 2+ directive that will increment (or decrement) a counter variable while your element is being pressed. Similar to Medium's claps.
 
-[Preview in Plunker](https://plnkr.co/R5W1BnfoeBOlEifUwGU7)
+[Preview in Plunker](https://plnkr.co/FNtaZk)
 
 [About Medium's Claps](https://blog.medium.com/show-authors-more-%EF%B8%8F-with-s-c1652279ba01)
 
