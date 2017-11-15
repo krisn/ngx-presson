@@ -34,11 +34,11 @@ export class PressonDirective {
     .timer(this.pressonWait, this.pressonSpeed)
     .takeWhile(val => this.mouseDown)
     .finally(() => {
-      console.log('unsubscribe', this.presson);
+      // console.log('unsubscribe', this.presson);
       timer.unsubscribe();
     })
     .subscribe(val => {
-      console.log('inc', this.presson);
+      // console.log('inc', this.presson);
       this.presson++;
       this.pressonChange.emit(this.presson);
     });

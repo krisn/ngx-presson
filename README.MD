@@ -1,8 +1,10 @@
 # ngx-presson
 
-Angular 2+ directive that will increment (or decrement) a counter variable while your element is being pressed. Similar to Medium's [claps](https://blog.medium.com/show-authors-more-%EF%B8%8F-with-s-c1652279ba01).
+Angular 2+ directive that will increment (or decrement) a counter variable while your element is being pressed. Similar to Medium's claps.
 
 [Preview in Plunker](https://plnkr.co/R5W1BnfoeBOlEifUwGU7)
+
+[About Medium's Claps](https://blog.medium.com/show-authors-more-%EF%B8%8F-with-s-c1652279ba01)
 
 [![npm version](https://badge.fury.io/js/ngx-presson.svg)](https://badge.fury.io/js/ngx-presson)
 [![license](https://img.shields.io/npm/l/ngx-presson.svg)](https://www.npmjs.com/package/ngx-presson)

@@ -16,10 +16,11 @@ import { PressonModule }  from '../dist/ngx-presson.umd.js';
     <h2>ngx-presson!</h2>
     <p><button [(presson)]="counter">Presson</button></p>
     <p>Counter: {{counter}}</p>
+    <div class="redbar" [style.width]="counter+'px'"></div>
   </div>
   `,
   styles: [`
-    .paragraph { background-color: #eee; width: 100%; }
+    .redbar { background-color: red; height: 20px; }
   `]
 })
 class AppComponent implements OnInit {
