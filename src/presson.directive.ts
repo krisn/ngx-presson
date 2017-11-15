@@ -1,4 +1,5 @@
 import { Directive, ElementRef, HostListener, Input, EventEmitter, Output } from '@angular/core';
+import * as Rx from 'rxjs/Rx';
 
 @Directive({
   selector: '[presson]'
@@ -22,11 +23,18 @@ export class PressonDirective {
   }
 
   inc() {
-    while (this.mouseDown) {
+    /*while (this.mouseDown) {
       this.presson++;
       this.pressonChange.emit(this.presson);
       console.log(this.presson);
-    }
+    }*/
+    const timer = Rx.Observable
+    .timer(0, 200)
+    .takeWhile(val => this.mouseDown)
+    .finally(() => timer.unsubscribe())
+    .subscribe(val => {
+      this.presson++;
+    });
   }
 
   @HostListener('mouseup') onMouseup() {

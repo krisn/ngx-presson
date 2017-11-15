@@ -5,6 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+// import * as Rx from 'rxjs/Rx';
 
 import { PressonModule }  from '../dist/ngx-presson.umd.js';
 
